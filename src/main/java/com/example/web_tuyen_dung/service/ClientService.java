@@ -14,4 +14,8 @@ public class ClientService {
     public Client findClientByUserId(Long userId) {
         return clientRepository.findByUserId(userId);
     }
+
+    public Client saveClient(Client client) {
+        return clientRepository.save(client);
+    }
 }
