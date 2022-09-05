@@ -30,3 +30,24 @@ create table client
     constraint client_ibfk_1
         foreign key (user_id) references user (id)
 );
+
+create table offer
+(
+    id                         bigint auto_increment primary key,
+    client_id                  bigint        not null,
+    offer_name                 varchar(1000) not null,
+    offer_type                 tinyint       not null comment 'Loại offer: 0: Tuyển dụng, 1: Chỉ định',
+    approval_status            tinyint       not null comment 'Trạng thái phê duyệt: 1: Đang chờ xử lý, 2: Đã phê duyệt, 3: Từ chối, 4: Đã rút',
+    number_of_vacancies        int           null,
+    recruitment_start_datetime datetime      not null,
+    recruitment_end_datetime   datetime      not null,
+    work_prefecture_id         varchar(100)  not null comment 'Danh sách các tỉnh của nơi làm việc',
+    recruitment_age_min        int           not null,
+    recruitment_age_max        int           not null,
+    recruitment_notes          varchar(1000) not null,
+    interview_datetime         datetime      not null,
+    gender                     tinyint(1)    not null comment 'Giới tính: 1: Nữ, 2: Nam, 3: Tất cả',
+    cast_preparation_detail    text          null,
+    salary                     int           null,
+    delete_flg                 tinyint(1)    not null comment 'Client rút thì delete_flg = 1 và approval_status = 4'
+)
