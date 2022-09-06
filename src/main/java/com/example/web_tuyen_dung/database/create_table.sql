@@ -27,6 +27,7 @@ create table client
     employee_quantity tinyint      null comment 'SL nhân viên: 0: 50-100, 1: 100-250, 2: 250-500, 3: 500+',
     avatar            varchar(500) null,
     cover_image       varchar(500) null,
+    auth_provider     varchar(15)  null,
     constraint client_ibfk_1
         foreign key (user_id) references user (id)
 );

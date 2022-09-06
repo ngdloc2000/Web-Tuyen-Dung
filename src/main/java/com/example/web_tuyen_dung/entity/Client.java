@@ -1,6 +1,6 @@
 package com.example.web_tuyen_dung.entity;
 
-import com.example.web_tuyen_dung.common.constants.UserConstant;
+import com.example.web_tuyen_dung.common.enums.AuthenticationProvider;
 import com.example.web_tuyen_dung.dto.ClientRegistrationFormDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,6 +29,7 @@ public class Client {
     private Integer employeeQuantity;
     private String avatar;
     private String coverImage;
+    private AuthenticationProvider authProvider;
 
     public Client(ClientRegistrationFormDto clientRegistrationFormDto) {
         this.staffName = clientRegistrationFormDto.getStaffName();
