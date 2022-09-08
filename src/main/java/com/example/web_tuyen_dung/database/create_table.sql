@@ -1,6 +1,6 @@
 use web_tuyen_dung;
 
-create table user
+create table account
 (
     id       bigint auto_increment
         primary key,
@@ -29,7 +29,7 @@ create table client
     cover_image       varchar(500) null,
     auth_provider     varchar(15)  null,
     constraint client_ibfk_1
-        foreign key (user_id) references user (id)
+        foreign key (user_id) references account (id)
 );
 
 create table offer

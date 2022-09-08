@@ -2,14 +2,12 @@ package com.example.web_tuyen_dung.controller;
 
 import com.example.web_tuyen_dung.dto.ClientRegistrationFormDto;
 import com.example.web_tuyen_dung.entity.Client;
-import com.example.web_tuyen_dung.entity.User;
+import com.example.web_tuyen_dung.entity.Account;
 import com.example.web_tuyen_dung.service.ClientService;
 import com.example.web_tuyen_dung.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Objects;
 
 @RestController
 @RequestMapping("client")
@@ -23,9 +21,9 @@ public class ClientController {
     @PostMapping("/saveClient")
     @Transactional
     public Client saveClient(@RequestBody ClientRegistrationFormDto clientRegistrationFormDto) {
-        User user = new User(clientRegistrationFormDto);
+        Account account = new Account(clientRegistrationFormDto);
         Client client = new Client(clientRegistrationFormDto);
-        userService.saveUser(user);
+        userService.saveUser(account);
         clientService.saveClient(client);
         return client;
     }
