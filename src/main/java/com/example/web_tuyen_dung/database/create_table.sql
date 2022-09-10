@@ -1,21 +1,19 @@
 use web_tuyen_dung;
 
-create table account
+create table user
 (
     id       bigint auto_increment
         primary key,
-    email    varchar(500) not null,
+    username varchar(500) not null,
     password varchar(500) not null,
-    type_id  int          not null comment 'Loại người dùng: 0: Admin, 1: client, 2: model',
-    status   int          not null comment 'Trạng thái người dùng: 0: Đang chờ xác minh, 1: Đã kích hoạt, 2: Chặn',
-    constraint email
-        unique (email, status)
+    type     varchar(20)  not null,
+    status   varchar(20)  not null
 );
 
-create table client
+create table company
 (
-    user_id           bigint auto_increment
-        primary key,
+    id                bigint auto_increment primary key,
+    user_id           bigint,
     staff_name        varchar(100) not null,
     company_name      varchar(100) not null,
     type_of_business  int          null,
@@ -24,12 +22,34 @@ create table client
     prefecture_id     int          null,
     address           varchar(600) null,
     description       longtext     null,
-    employee_quantity tinyint      null comment 'SL nhân viên: 0: 50-100, 1: 100-250, 2: 250-500, 3: 500+',
+    employee_quantity int          null,
     avatar            varchar(500) null,
     cover_image       varchar(500) null,
-    auth_provider     varchar(15)  null,
-    constraint client_ibfk_1
-        foreign key (user_id) references account (id)
+    foreign key (user_id) references user (id)
+);
+
+create table candidate
+(
+    id                    bigint auto_increment primary key,
+    user_id               bigint,
+    full_name             varchar(100) not null,
+    avatar                varchar(500) not null,
+    birthdate             date         null,
+    current_prefecture_id int          null,
+    height                int          null,
+    weight                int          null,
+    special_skill         varchar(500) null,
+    year_exp              int          null,
+    tel                   varchar(100) null,
+    gender                varchar(10)  null,
+    image2                varchar(500) null,
+    image3                varchar(500) null,
+    image4                varchar(500) null,
+    youtube_name          varchar(100) null,
+    twitter_name          varchar(100) null,
+    instagram_name        varchar(100) null,
+    is_open_profile       boolean      not null,
+    foreign key (user_id) references user (id)
 );
 
 create table offer

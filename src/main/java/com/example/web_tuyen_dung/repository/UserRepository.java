@@ -1,9 +1,13 @@
 package com.example.web_tuyen_dung.repository;
 
-import com.example.web_tuyen_dung.entity.Account;
+import com.example.web_tuyen_dung.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends JpaRepository<Account, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
+
+    User findByUsernameAndPassword(String username, String password);
+
+    boolean existsByUsername(String username);
 }
