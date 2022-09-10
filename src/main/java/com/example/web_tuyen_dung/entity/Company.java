@@ -1,18 +1,20 @@
-package com.example.web_tuyen_dung.dto;
+package com.example.web_tuyen_dung.entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+
+@Entity
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class ClientRegistrationFormDto {
-    private String email;
-    private String password;
+@Table(name = "company", catalog = "web_tuyen_dung")
+public class Company {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private Long userId;
     private String staffName;
     private String companyName;
-    private Integer typeOfBusiness;
+    private String typeOfBusiness;
     private String url;
     private String tel;
     private Integer prefectureId;
