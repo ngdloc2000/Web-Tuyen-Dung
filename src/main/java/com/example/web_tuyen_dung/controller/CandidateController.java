@@ -73,7 +73,6 @@ public class CandidateController {
         String uri = "https://www.instagram.com/thuhaaa__/?__a=1&__d=dis";
         RestTemplate restTemplate = new RestTemplate();
         String res = restTemplate.getForObject(uri, String.class);
-//        JsonObject jsonObject = new JsonParser().parse(res).getAsJsonObject();
         return res;
     }
 }
