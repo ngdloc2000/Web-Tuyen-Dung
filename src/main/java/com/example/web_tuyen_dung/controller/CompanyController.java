@@ -31,16 +31,19 @@ public class CompanyController {
 
     @PostMapping("/register")
     public void register(@RequestBody CompanyRegistrationFormDto registrationForm) throws Exception {
+        // Kiểm tra username đã tồn tại
         if (userService.isExistsUser(registrationForm.getUsername())) {
             throw new Exception("Đã tồn tại username");
         }
 
+        // Tạo bản ghi user mới
         User user = modelMapper.map(registrationForm, User.class);
-        user.setStatus(UserConstant.StatusUser.ACTIVE);
-        user.setType(UserConstant.TypeUser.COMPANY);
+        user.setStatus(UserConstant.Status.ACTIVE);
+        user.setType(UserConstant.Type.COMPANY);
 
+        // Tạo bản ghi công ty mới
         Company company = modelMapper.map(registrationForm, Company.class);
-        company.setUserId(userService.saveUser(user).getId());
+        company.setUser(userService.saveUser(user));
         companyService.saveCompany(company);
     }
 

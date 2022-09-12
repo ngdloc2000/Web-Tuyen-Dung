@@ -7,11 +7,11 @@ import com.example.web_tuyen_dung.entity.Candidate;
 import com.example.web_tuyen_dung.entity.User;
 import com.example.web_tuyen_dung.service.CandidateService;
 import com.example.web_tuyen_dung.service.UserService;
+import com.example.web_tuyen_dung.util.AppException;
 import org.apache.commons.lang3.StringUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -31,18 +31,21 @@ public class CandidateController {
     CandidateService candidateService;
 
     @PostMapping("/register")
-    public void register(@RequestBody CandidateRegistrationFormDto registrationForm) throws Exception {
+    public void register(@RequestBody CandidateRegistrationFormDto registrationForm) {
+        // Kiểm tra username đã tồn tại
         if (userService.isExistsUser(registrationForm.getUsername())) {
-            throw new Exception("Đã tồn tại username");
+            throw new AppException("Đã tồn tại username");
         }
 
+        // Tạo bản ghi user mới
         User user = modelMapper.map(registrationForm, User.class);
-        user.setStatus(UserConstant.StatusUser.ACTIVE);
-        user.setType(UserConstant.TypeUser.CANDIDATE);
+        user.setStatus(UserConstant.Status.ACTIVE);
+        user.setType(UserConstant.Type.CANDIDATE);
 
+        // Tạo bản ghi ứng viên mới
         Candidate candidate = modelMapper.map(registrationForm, Candidate.class);
         candidate.setIsOpenProfile(true);
-        candidate.setUserId(userService.saveUser(user).getId());
+        candidate.setUser(userService.saveUser(user));
         candidateService.saveCandidate(candidate);
     }
 
@@ -68,11 +71,5 @@ public class CandidateController {
         return candidateService.findByUserId(userId);
     }
 
-    @GetMapping("/call")
-    public String call() {
-        String uri = "https://www.instagram.com/thuhaaa__/?__a=1&__d=dis";
-        RestTemplate restTemplate = new RestTemplate();
-        String res = restTemplate.getForObject(uri, String.class);
-        return res;
-    }
+
 }

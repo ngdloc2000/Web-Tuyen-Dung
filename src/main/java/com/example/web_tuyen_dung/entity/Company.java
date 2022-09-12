@@ -11,13 +11,15 @@ public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long userId;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
     private String staffName;
     private String companyName;
     private String typeOfBusiness;
     private String url;
     private String tel;
-    private Integer prefectureId;
+    private String city;
     private String address;
     private String description;
     private Integer employeeQuantity;

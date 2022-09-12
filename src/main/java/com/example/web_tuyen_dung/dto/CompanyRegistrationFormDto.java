@@ -15,7 +15,7 @@ public class CompanyRegistrationFormDto {
     private Integer typeOfBusiness;
     private String url;
     private String tel;
-    private Integer prefectureId;
+    private String city;
     private String address;
     private String description;
     private Integer employeeQuantity;

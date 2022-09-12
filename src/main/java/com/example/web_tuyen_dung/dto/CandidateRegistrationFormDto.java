@@ -11,7 +11,7 @@ public class CandidateRegistrationFormDto {
     private String fullName;
     private String avatar;
     private LocalDate birthdate;
-    private Integer currentPrefectureId;
+    private String city;
     private Integer height;
     private Integer weight;
     private String specialSkill;
