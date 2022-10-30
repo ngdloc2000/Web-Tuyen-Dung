@@ -1,19 +1,18 @@
-use web_tuyen_dung;
-
-create table user
+DROP TABLE IF EXISTS users;
+create table users
 (
-    id       bigint auto_increment
-        primary key,
+    id       serial primary key,
     username varchar(500) not null,
     password varchar(500) not null,
     type     varchar(20)  not null,
     status   varchar(20)  not null
 );
 
+DROP TABLE IF EXISTS company;
 create table company
 (
-    id                bigint auto_increment primary key,
-    user_id           bigint,
+    id                serial primary key,
+    user_id           serial,
     staff_name        varchar(100)  not null,
     company_name      varchar(100)  not null,
     type_of_business  varchar(100)  null,
@@ -24,17 +23,17 @@ create table company
     description       varchar(1000) null,
     employee_quantity int           null,
     avatar            varchar(500)  null,
-    cover_image       varchar(500)  null,
-    foreign key (user_id) references user (id)
+    cover_image       varchar(500)  null
 );
 
+DROP TABLE IF EXISTS candidate;
 create table candidate
 (
-    id              bigint auto_increment primary key,
-    user_id         bigint,
+    id              serial primary key,
+    user_id         serial,
     full_name       varchar(100) not null,
     avatar          varchar(500) not null,
-    birthdate       date         null,
+    birthdate       timestamp         null,
     city            varchar(100) null,
     height          int          null,
     weight          int          null,
@@ -48,24 +47,23 @@ create table candidate
     youtube_name    varchar(100) null,
     twitter_name    varchar(100) null,
     instagram_name  varchar(100) null,
-    is_open_profile boolean      not null,
-    foreign key (user_id) references user (id)
+    is_open_profile boolean      not null
 );
 
+DROP TABLE IF EXISTS job;
 create table job
 (
-    id                         bigint auto_increment primary key,
-    company_id                 bigint        not null,
+    id                         serial primary key,
+    company_id                 serial        not null,
     name                       varchar(1000) not null,
-    approval_status            varchar(100)  not null comment 'Trạng thái phê duyệt: Đang chờ xử lý, Đã phê duyệt, Từ chối, Đã rút',
-    recruitment_start_datetime datetime      not null,
-    recruitment_end_datetime   datetime      not null,
-    work_place                 varchar(1000) not null comment 'Danh sách các tỉnh của nơi làm việc',
+    approval_status            varchar(100)  not null,
+    recruitment_start_datetime timestamp      not null,
+    recruitment_end_datetime   timestamp      not null,
+    work_place                 varchar(1000) not null,
     recruitment_age_min        int           not null,
     recruitment_age_max        int           not null,
     job_description            varchar(1000) not null,
-    interview_datetime         datetime      not null,
-    gender                     varchar(100)  not null comment 'Giới tính: 1: Nữ, 2: Nam, 3: Tất cả',
-    salary                     int           null,
-    foreign key (company_id) references company (user_id)
+    interview_datetime         timestamp      not null,
+    gender                     varchar(100)  not null,
+    salary                     int           null
 )

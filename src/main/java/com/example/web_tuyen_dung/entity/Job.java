@@ -3,11 +3,12 @@ package com.example.web_tuyen_dung.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Entity
 @Data
-@Table(name = "job", catalog = "web_tuyen_dung")
+@Table(name = "job")
 public class Job {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,8 +18,8 @@ public class Job {
     private Company company;
     private String name;
     private String approvalStatus;
-    private LocalDateTime recruitmentStartDatetime;
-    private LocalDateTime recruitmentEndDatetime;
+    private Timestamp recruitmentStartDatetime;
+    private Timestamp recruitmentEndDatetime;
     private String workPlace;
     private Integer recruitmentAgeMin;
     private Integer recruitmentAgeMax;
