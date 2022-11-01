@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -67,10 +68,18 @@ public class CandidateController {
         return result;
     }
 
+    @GetMapping("/candidates")
+    public List<Candidate> getAllCandidates(@RequestParam Integer pageNumber,
+                                            @RequestParam Integer pageSize,
+                                            @RequestParam(defaultValue = "id") String sortBy) {
+        List<Candidate> page = candidateService.getAllUsers(pageNumber, pageSize, sortBy);
+
+        return page;
+    }
+
     @GetMapping("/{userId}")
     public Candidate findById(@PathVariable("userId") Long userId) {
         return candidateService.findByUserId(userId);
     }
-
 
 }

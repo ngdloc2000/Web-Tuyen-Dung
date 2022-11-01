@@ -1,7 +1,8 @@
 DROP TABLE IF EXISTS users;
 create table users
 (
-    id       serial primary key,
+    id       bigint primary key generated always as
+        IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 999999999 CACHE 1 ),
     username varchar(500) not null,
     password varchar(500) not null,
     type     varchar(20)  not null,
@@ -11,8 +12,9 @@ create table users
 DROP TABLE IF EXISTS company;
 create table company
 (
-    id                serial primary key,
-    user_id           serial,
+    id                bigint primary key generated always as
+        IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 999999999 CACHE 1 ),
+    user_id           bigint,
     staff_name        varchar(100)  not null,
     company_name      varchar(100)  not null,
     type_of_business  varchar(100)  null,
@@ -29,11 +31,12 @@ create table company
 DROP TABLE IF EXISTS candidate;
 create table candidate
 (
-    id              serial primary key,
-    user_id         serial,
+    id              bigint primary key generated always as
+        IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 999999999 CACHE 1 ),
+    user_id         bigint,
     full_name       varchar(100) not null,
     avatar          varchar(500) not null,
-    birthdate       timestamp         null,
+    birthdate       date         null,
     city            varchar(100) null,
     height          int          null,
     weight          int          null,
@@ -53,17 +56,17 @@ create table candidate
 DROP TABLE IF EXISTS job;
 create table job
 (
-    id                         serial primary key,
-    company_id                 serial        not null,
+    id                         bigint primary key generated always as
+        IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 999999999 CACHE 1 ),
+    company_id                 bigint        not null,
     name                       varchar(1000) not null,
     approval_status            varchar(100)  not null,
-    recruitment_start_datetime timestamp      not null,
-    recruitment_end_datetime   timestamp      not null,
+    recruitment_start_datetime timestamp     not null,
+    recruitment_end_datetime   timestamp     not null,
     work_place                 varchar(1000) not null,
     recruitment_age_min        int           not null,
     recruitment_age_max        int           not null,
     job_description            varchar(1000) not null,
-    interview_datetime         timestamp      not null,
     gender                     varchar(100)  not null,
     salary                     int           null
 )
