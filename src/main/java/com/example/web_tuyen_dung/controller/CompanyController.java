@@ -57,6 +57,7 @@ public class CompanyController {
                 result.put("user", user);
                 result.put("isLogin", true);
             } else {
+                result.put("user", null);
                 result.put("isLogin", false);
             }
         }
