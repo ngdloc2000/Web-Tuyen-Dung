@@ -3,7 +3,6 @@ package com.example.web_tuyen_dung.entity;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Entity
@@ -18,8 +17,8 @@ public class Job {
     private Company company;
     private String name;
     private String approvalStatus;
-    private Timestamp recruitmentStartDatetime;
-    private Timestamp recruitmentEndDatetime;
+    private LocalDateTime recruitmentStartDatetime;
+    private LocalDateTime recruitmentEndDatetime;
     private String workPlace;
     private Integer recruitmentAgeMin;
     private Integer recruitmentAgeMax;
