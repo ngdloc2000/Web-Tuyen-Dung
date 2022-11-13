@@ -1,6 +1,6 @@
 package com.example.web_tuyen_dung.common.constants;
 
-import com.example.web_tuyen_dung.entity.Gender;
+import com.example.web_tuyen_dung.model.Gender;
 
 import java.util.Arrays;
 import java.util.List;

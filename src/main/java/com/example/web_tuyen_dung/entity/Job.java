@@ -12,9 +12,7 @@ public class Job {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "company_id", referencedColumnName = "id")
-    private Company company;
+    private Long companyId;
     private String name;
     private String approvalStatus;
     private LocalDateTime recruitmentStartDatetime;

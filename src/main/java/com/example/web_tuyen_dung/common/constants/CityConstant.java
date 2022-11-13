@@ -1,6 +1,6 @@
 package com.example.web_tuyen_dung.common.constants;
 
-import com.example.web_tuyen_dung.entity.City;
+import com.example.web_tuyen_dung.model.City;
 
 import java.util.*;
 

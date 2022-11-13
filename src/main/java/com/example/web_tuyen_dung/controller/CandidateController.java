@@ -46,7 +46,7 @@ public class CandidateController {
         // Tạo bản ghi ứng viên mới
         Candidate candidate = modelMapper.map(registrationForm, Candidate.class);
         candidate.setIsOpenProfile(true);
-        candidate.setUser(userService.saveUser(user));
+        candidate.setUserId(userService.saveUser(user).getId());
         candidateService.saveCandidate(candidate);
     }
 

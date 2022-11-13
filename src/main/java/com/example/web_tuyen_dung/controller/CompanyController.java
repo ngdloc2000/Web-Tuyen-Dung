@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -43,7 +44,7 @@ public class CompanyController {
 
         // Tạo bản ghi công ty mới
         Company company = modelMapper.map(registrationForm, Company.class);
-        company.setUser(userService.saveUser(user));
+        company.setUserId(userService.saveUser(user).getId());
         companyService.saveCompany(company);
     }
 
@@ -68,5 +69,13 @@ public class CompanyController {
     @GetMapping("/{userId}")
     public Company findById(@PathVariable("userId") Long userId) {
         return companyService.findByUserId(userId);
+    }
+
+    @GetMapping("/companies")
+    public List<Company> getAllCompanies(@RequestParam Integer pageNumber,
+                                         @RequestParam Integer pageSize,
+                                         @RequestParam(defaultValue = "id") String sortBy) {
+        List<Company> page = companyService.getAllCompanies(pageNumber, pageSize, sortBy);
+        return page;
     }
 }

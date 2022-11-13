@@ -12,16 +12,14 @@ public class Candidate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User user;
+    private Long userId;
     private String fullName;
     private String avatar;
     private LocalDate birthdate;
     private String city;
     private Integer height;
     private Integer weight;
-    private String specialSkill;
+    private String description;
     private Integer yearExp;
     private String tel;
     private String gender;
@@ -29,7 +27,6 @@ public class Candidate {
     private String image3;
     private String image4;
     private String youtubeName;
-    private String twitterName;
     private String instagramName;
     private Boolean isOpenProfile;
 }

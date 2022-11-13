@@ -15,7 +15,7 @@ public class JobController {
     @Autowired
     JobService jobService;
 
-    @PostMapping("/save")
+    @PostMapping("/create")
     public Job save(@RequestBody Job job) {
         return jobService.save(job);
     }

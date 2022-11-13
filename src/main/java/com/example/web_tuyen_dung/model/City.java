@@ -1,4 +1,4 @@
-package com.example.web_tuyen_dung.entity;
+package com.example.web_tuyen_dung.model;
 
 import lombok.Data;
 import lombok.Getter;
