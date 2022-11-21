@@ -1,3 +1,7 @@
+ALTER TABLE `job`
+    CHANGE `work_place` `work_place` VARCHAR(255)
+        CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
 DROP TABLE IF EXISTS users;
 create table users
 (
@@ -59,8 +63,8 @@ create table job
     recruitment_start_datetime datetime      not null,
     recruitment_end_datetime   datetime      not null,
     work_place                 varchar(1000) not null,
-    recruitment_age_min        int           not null,
-    recruitment_age_max        int           not null,
+    recruitment_age_min        int,
+    recruitment_age_max        int,
     job_description            varchar(1000) not null,
     gender                     varchar(100)  not null,
     salary                     int           null,
@@ -70,6 +74,9 @@ create table job
 drop table if exists sns;
 create table sns
 (
-    id bigint primary key auto_increment,
-
+    id                  bigint primary key auto_increment,
+    candidate_id        bigint not null,
+    youtube_followers   int,
+    instagram_followers int,
+    foreign key (candidate_id) references candidate (id)
 )

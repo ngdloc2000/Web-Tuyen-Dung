@@ -10,6 +10,7 @@ import com.example.web_tuyen_dung.service.UserService;
 import org.apache.commons.lang3.StringUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -31,6 +32,7 @@ public class CompanyController {
     CompanyService companyService;
 
     @PostMapping("/register")
+    @Transactional
     public void register(@RequestBody CompanyRegistrationFormDto registrationForm) throws Exception {
         // Kiểm tra username đã tồn tại
         if (userService.isExistsUser(registrationForm.getUsername())) {

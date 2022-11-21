@@ -22,6 +22,5 @@ public class CandidateRegistrationFormDto {
     private String image3;
     private String image4;
     private String youtubeName;
-    private String twitterName;
     private String instagramName;
 }
